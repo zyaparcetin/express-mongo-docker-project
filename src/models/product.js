@@ -1,4 +1,3 @@
-// my user.js
 const mongoose = require('mongoose')
 const autopopulate = require('mongoose-autopopulate')
 
