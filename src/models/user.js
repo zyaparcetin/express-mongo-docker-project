@@ -62,6 +62,8 @@ class User {
   }
 }
 
+module.exports = mongoose.model('User', userSchema)
+
 /* get profile() { // Armagan's code
     return `
       # ${this.name} (${this.age})
@@ -120,5 +122,5 @@ Bio: ${this.bio}
 userSchema.loadClass(User)
 userSchema.plugin(autopopulate)
 
-module.exports = mongoose.model('User', userSchema) 
+
 */
