@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+/* eslint-disable import/no-extraneous-dependencies */
 require('dotenv').config({ debug: process.env.DEBUG })
 const createError = require('http-errors')
 const express = require('express')
@@ -14,6 +16,23 @@ const productsRouter = require('./routes/products')
 
 const app = express()
 
+if (app.get('env') === 'development') {
+  /* eslint-disable-next-line */
+
+  app.use(
+    // eslint-disable-next-line import/no-extraneous-dependencies
+
+    require('connect-livereload')()
+  )
+
+  /* eslint-disable-next-line */
+
+  require('livereload')
+    .createServer({ extraExts: ['pug'] })
+
+    .watch([`${__dirname}/public`, `${__dirname}/views`])
+}
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
@@ -27,6 +46,7 @@ app.use('/favicon.ico', express.static(path.join(__dirname, 'public', 'images', 
 
 app.use('/', indexRouter)
 app.use('/users', usersRouter)
+app.use('/products', productsRouter)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
