@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 // eslint-disable-next-line prefer-const
-let connectionString = process.env.MONGODB_CONNECTION_STRING || 'mongodb://localhost:27017'
+let connectionString = process.env.MONGODB_CONNECTION_STRING || 'mongodb://mongo:27017' // before:'mongodb://localhost:27017'
 
 mongoose.set('debug', true)
 
@@ -12,3 +12,5 @@ mongoose
   })
   .then(() => console.log('connection established'))
   .catch(error => console.log('not connected:', error))
+
+module.exports = mongoose.connection // forgot to write this line and add at 14:50-05/12/2022
