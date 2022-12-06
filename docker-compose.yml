@@ -6,7 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      - MONGODB_CONNECTION_STRING=${MONGODB_CONNECTION_STRING}
+      #- MONGODB_CONNECTION_STRING=${MONGODB_CONNECTION_STRING}
+      - MONGODB_CONNECTION_STRING=mongodb://mongo/express-mongo-docker-project
     ports:
       - 3000:3000
       - 35729:35729
